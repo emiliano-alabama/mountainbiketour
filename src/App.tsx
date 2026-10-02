@@ -590,8 +590,10 @@ function Noticias() {
 
 function NoticiaModal({ noticia, onClose }: { noticia: Noticia | null; onClose: () => void }) {
   const cerrarRef = useRef<HTMLButtonElement>(null)
+  const [cargada, setCargada] = useState(false)
   useEffect(() => {
     if (!noticia) return
+    setCargada(false)
     const previo = document.activeElement as HTMLElement | null
     cerrarRef.current?.focus()
     document.body.style.overflow = 'hidden'
@@ -605,45 +607,87 @@ function NoticiaModal({ noticia, onClose }: { noticia: Noticia | null; onClose: 
   }, [noticia, onClose])
 
   if (!noticia) return null
+  const enlaceBtn = 'inline-flex items-center gap-2 rounded-full border-2 border-ink px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-white'
+
   return (
-    <div className="popup-fondo fixed inset-0 z-[75] flex items-end justify-center bg-ink/70 backdrop-blur-sm sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="noticia-titulo" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <article className="popup-caja relative flex max-h-[94svh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] sm:rounded-3xl">
-        <button
-          ref={cerrarRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Cerrar noticia"
-          className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-ink shadow-lg ring-1 ring-line transition-colors hover:bg-ink hover:text-white"
-        >
-          <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
-            <path d="M4 4l12 12M16 4 4 16" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-          </svg>
-        </button>
-        <div className="overflow-y-auto">
-          <img src={noticia.img} alt="" className="aspect-[16/9] w-full object-cover" />
-          <div className="p-6 md:p-10">
+    <div
+      className="popup-fondo fixed inset-0 z-[75] flex items-end justify-center bg-ink/70 backdrop-blur-sm sm:items-center sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="noticia-titulo"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <article className="popup-caja relative flex h-[94svh] w-full max-w-5xl flex-col overflow-hidden rounded-t-3xl bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] sm:h-[90svh] sm:rounded-3xl">
+        {/* Encabezado */}
+        <header className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-7">
+          <div className="min-w-0">
             <p className="font-mono text-xs uppercase text-brand">{fechaNoticia(noticia.fecha)}</p>
-            <h2 id="noticia-titulo" className="display mt-3 text-[clamp(2.2rem,5vw,3.6rem)]">
+            <h2 id="noticia-titulo" className="mt-1 text-lg font-bold leading-snug md:text-xl">
               {noticia.titulo}
             </h2>
-            <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink/85">
-              {noticia.cuerpo.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3 border-t border-line pt-6">
-              {noticia.enlaces.map((l) => (
-                <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border-2 border-ink px-5 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-white">
-                  {l.label} <Arrow />
-                </a>
-              ))}
-              {/* Al abrir la ticketera se cierra la noticia, para no apilar dos modales */}
-              <span onClick={onClose} className="contents">
-                <CtaButton href={FECHA_DESTACADA.inscripcion ?? LINKS.inscripcion}>Inscríbete a la {FECHA_DESTACADA.n}ª fecha</CtaButton>
-              </span>
-            </div>
           </div>
+          <button
+            ref={cerrarRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Cerrar noticia"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full ring-1 ring-line transition-colors hover:bg-ink hover:text-white"
+          >
+            <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
+              <path d="M4 4l12 12M16 4 4 16" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+            </svg>
+          </button>
+        </header>
+
+        {/* Nota completa: se carga desde el medio que la publicó */}
+        <div className="relative min-h-0 flex-1 bg-snow">
+          {noticia.nota ? (
+            <>
+              {!cargada && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center" role="status">
+                  <span className="h-10 w-10 animate-spin rounded-full border-4 border-line border-t-brand" aria-hidden="true" />
+                  <p className="text-sm text-slate">Cargando la nota completa…</p>
+                </div>
+              )}
+              <iframe
+                key={noticia.nota}
+                src={noticia.nota}
+                title={`Nota completa: ${noticia.titulo}`}
+                onLoad={() => setCargada(true)}
+                className={`h-full w-full bg-white transition-opacity duration-300 ${cargada ? 'opacity-100' : 'opacity-0'}`}
+              />
+            </>
+          ) : (
+            <div className="h-full overflow-y-auto">
+              <img src={noticia.img} alt="" className="aspect-[16/9] w-full object-cover" />
+              <div className="space-y-4 p-6 text-lg leading-relaxed text-ink/85 md:p-10">
+                {noticia.cuerpo.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
+
+        {/* Pie con enlaces */}
+        <footer className="flex flex-wrap items-center gap-2 border-t border-line px-5 py-3 md:px-7">
+          {noticia.nota && (
+            <a href={noticia.nota} target="_blank" rel="noopener noreferrer" className={enlaceBtn}>
+              Abrir en RideChile <Arrow />
+            </a>
+          )}
+          {noticia.enlaces.map((l) => (
+            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className={enlaceBtn}>
+              {l.label} <Arrow />
+            </a>
+          ))}
+          {/* Al abrir la ticketera se cierra la noticia, para no apilar dos modales */}
+          <span onClick={onClose} className="contents">
+            <CtaButton href={FECHA_DESTACADA.inscripcion ?? LINKS.inscripcion} className="ml-auto px-5 py-2.5">
+              Inscríbete a la {FECHA_DESTACADA.n}ª fecha
+            </CtaButton>
+          </span>
+        </footer>
       </article>
     </div>
   )
