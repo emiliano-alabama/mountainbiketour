@@ -1,0 +1,20 @@
+node_modules/
+dist/
+build/
+.cache/
+.env*
+.vite/
+vite.config.*.timestamp-*
+*.tsbuildinfo
+*-debug.log*
+logs/
+*.log
+.claude-replay.*
+.tmp-*
+
+# Sistema / local
+.DS_Store
+.claude/
+
+# Respaldos locales (fotos y propuestas descartadas)
+_backup/

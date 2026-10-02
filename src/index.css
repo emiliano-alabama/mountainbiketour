@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-snow: #f4f7f9;
+  --color-ink: #0a1b2a;
+  --color-slate: #56677a;
+  --color-line: #dbe3ea;
+  /* MTB Tour: azul y rojo del logo */
+  --color-brand: #015a80;
+  --color-brand-deep: #013f5a;
+  --color-volt: #c41a1f; /* acento (rojo MTB); se usa con texto blanco */
+  --color-volt-soft: #ff8c90; /* acento legible sobre fondos oscuros */
+  --color-sky: #e4eff5;
+
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 144px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-snow);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-volt);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Titulares: condensada, tracking cerrado */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Animación de entrada del hero */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes draw {
+  from { stroke-dashoffset: var(--len, 2000); }
+  to { stroke-dashoffset: 0; }
+}
+.rise { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.draw {
+  stroke-dasharray: var(--len, 2000);
+  animation: draw 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+}
+
+/* Revelado al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 32s linear infinite; }
+
+@keyframes kenburns {
+  from { transform: scale(1.03); }
+  to { transform: scale(1.08); }
+}
+.kenburns { animation: kenburns 9s ease-out both; }
+
+@keyframes progreso {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.progreso { animation-name: progreso; animation-timing-function: linear; animation-fill-mode: both; }
+
+@keyframes popupFondo {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popupCaja {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.popup-fondo { animation: popupFondo 0.35s ease both; }
+.popup-caja { animation: popupCaja 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+
+details > summary::-webkit-details-marker { display: none; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .draw, .marquee, .kenburns, .popup-fondo, .popup-caja { animation: none; }
+  .draw { stroke-dasharray: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Ticketera Welcu: ajustes sobre el HTML que inserta el embed (usa estilos inline, por eso algunos !important) */
+.welcu_embed { font-family: var(--font-body); color: var(--color-ink); font-size: 0.95rem; }
+.welcu_embed table { border-collapse: collapse; }
+.welcu_embed th {
+  padding: 8px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+.welcu_embed td { padding: 12px 6px; }
+.welcu_embed .wlc-ticket-name h6 { font-size: 1rem; font-weight: 700; line-height: 1.25; }
+.welcu_embed .wlc-ticket-name p { margin-top: 4px; font-size: 0.8rem; line-height: 1.45; color: var(--color-slate); }
+.welcu_embed select.quantity_selector {
+  min-width: 68px;
+  height: 42px;
+  padding: 0 10px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: auto;
+}
+.welcu_embed select.quantity_selector:hover { border-color: var(--color-ink); }
+.welcu_embed .row-price-total strong { font-family: var(--font-mono); }
+.welcu_embed #discount_code { border: 1.5px solid var(--color-line) !important; }
+.welcu_embed input[type='submit'] {
+  height: 50px !important;
+  padding: 0 30px !important;
+  border-radius: 999px;
+  background: var(--color-volt) !important;
+  color: #fff !important;
+  line-height: 50px !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.welcu_embed input[type='submit']:hover { background: var(--color-ink) !important; color: #fff !important; }
+@media (max-width: 640px) {
+  /* En móvil: Ticket · Precio · Cantidad (el total general sigue abajo) */
+  .welcu_embed .row-fee,
+  .welcu_embed td.row-price,
+  .welcu_embed #wlc-table-tickets tbody thead th:nth-child(4) { display: none !important; }
+  .welcu_embed .wlc-ticket-name p { font-size: 0.75rem; }
+}

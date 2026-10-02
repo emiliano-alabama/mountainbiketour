@@ -1,0 +1,1395 @@
+{
+"actualizado": "2026-10-02",
+"nota": "Actualizado tras la 1ª fecha (Viña Matetic)",
+"fuente": "Ranking acumulado MTB Tour 2026 (Demaria)",
+"entradas": [
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Manuel Echeverria Arredondo",
+"p": 10
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Hector Tobar Canales",
+"p": 8
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Jose Ignacio Muñoz Daettwyler",
+"p": 7
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Gustavo Rodriguez",
+"p": 6
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Claudio Marchant Reyes",
+"p": 5
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Eric Riquelme Valdes",
+"p": 4
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Job Alejandro Varas Briceño",
+"p": 3
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Francisco Rojas Prado",
+"p": 2
+},
+{
+"c": "E-Bike",
+"s": "Varones",
+"e": "General",
+"n": "Pedro Pavone Ferrer",
+"p": 1
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "21-30",
+"n": "Catalina Escudero",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "31-39",
+"n": "Fernanda Castro",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "31-39",
+"n": "Carolina Biehl Peñafiel",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "31-39",
+"n": "Maria De Los Angeles Araya Honores",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "15-20",
+"n": "Maximo Quililongo",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "15-20",
+"n": "Rodrigo Ledezma Morales",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Matias Urzua",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Ramón Sandoval",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Raúl Aguilera Vásquez",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Cristóbal Torrealba",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "David Urzua Astorga",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Andrés Ovalle Constantino",
+"p": 4
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "21-30",
+"n": "Gabriel Arlegui Peña",
+"p": 3
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Patricio Farias",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Hugo Pino Lucero",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Claudio Borquez Hernandez",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Cristian Correa Muñoz",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Leonardo Alexander Escobar Mesías",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "David Rios",
+"p": 4
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Francisco Farias González",
+"p": 3
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Luis Cannobbio",
+"p": 2
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "31-39",
+"n": "Nicolas Pavez Gutierrez",
+"p": 1
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Pablo Penagos",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Patricio Osses",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Anibal Ramirez",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Juan Bolivar",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Hernan Soto",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Jose Villalon",
+"p": 4
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Patricio Poblete Perez",
+"p": 3
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Felipe Burgos Petit",
+"p": 2
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "40-49",
+"n": "Francisco Abarca Alvarez",
+"p": 1
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Luis Pino",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Carlos Bucarey Yansen",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Rodrigo Rivera Miranda",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Aníbal Debandi",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Rodrigo Ibañez Arenas",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Juan Pablo Oliva Schulz",
+"p": 4
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Rodrigo Vera",
+"p": 3
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Daniel Aguirre",
+"p": 2
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "50-59",
+"n": "Marcelo Eyzaguirre",
+"p": 1
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Francisco Tocornal",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Patricio Diaz",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Alvaro Fernandez Cañas",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Renato Weiss",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Roberto Hernandez",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "60+",
+"n": "Hernán Aguila Fuentes",
+"p": 4
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Isabel Maureira",
+"p": 10
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Ana Karen",
+"p": 8
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Melissa Cifuentes Arévalo",
+"p": 7
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Maite De Pabla Mendoza Soto",
+"p": 6
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Carolina Carrasco",
+"p": 5
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Catalina Palominos Ureta",
+"p": 4
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Maria Diaz",
+"p": 3
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Andrea Jimenez Aguilar",
+"p": 2
+},
+{
+"c": "Familiar",
+"s": "Damas",
+"e": "General",
+"n": "Paula Vera Rojas",
+"p": 1
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Ruben Orellana",
+"p": 10
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Omar Bermudez Barrios",
+"p": 8
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Miguel Valdebenito Lara",
+"p": 7
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Lionel Valladares Hormazábal",
+"p": 6
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Jorge Pavez",
+"p": 5
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Sergio Andres Ilabaca Orozco",
+"p": 4
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Nicolas Patricio Gutierrez Muñoz",
+"p": 3
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "David Cerda Cardemil",
+"p": 2
+},
+{
+"c": "Familiar",
+"s": "Varones",
+"e": "General",
+"n": "Luis Alejandro Salas Garay",
+"p": 1
+},
+{
+"c": "Gravel",
+"s": "Damas",
+"e": "General",
+"n": "Mane Parra",
+"p": 10
+},
+{
+"c": "Gravel",
+"s": "Damas",
+"e": "General",
+"n": "Francisca Coffre",
+"p": 8
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Romain Babin",
+"p": 10
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Mauricio Valdés",
+"p": 8
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Cristian Carvajal Mallegas",
+"p": 7
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Pedro Ignacio Yañez Olave",
+"p": 6
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Juan Ignacio Urzúa Ovalle",
+"p": 5
+},
+{
+"c": "Gravel",
+"s": "Varones",
+"e": "General",
+"n": "Miguel Bravo Rojas",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "21-30",
+"n": "Caroline",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "21-30",
+"n": "Camila Martinez",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "21-30",
+"n": "Camila Yates Musalem",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "21-30",
+"n": "Constanza Herrera Mazuelo",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "21-30",
+"n": "Emilia Fuentes",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Isadora Borquez",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Pamela Vasquez Molina",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Francisca Soto",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Julissa Santis",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Yaritza Fabiola Silva Castillo",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Alejandra Denise Barrera Vidal",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "31-39",
+"n": "Rebeca Monsalve Godoy",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Pilar Cabrera Medina",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Patricia Ortiz Medel",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Elizabeth Flores",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Nelly Gutierrez",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Marcela Yañez",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Luna Vattuone Troncoso",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "40-49",
+"n": "Carolina Nelidow",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "50-59",
+"n": "Lorena Herrera Kong",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "50-59",
+"n": "Claudia Morales",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "50-59",
+"n": "Alejandra Alvarez",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "50-59",
+"n": "Cecilia Bohle",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "15-20",
+"n": "Alonso Acevedo",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "15-20",
+"n": "Alan Donoso",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "15-20",
+"n": "Vicente Pino Montoya",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "15-20",
+"n": "Vicente Carrasco",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "15-20",
+"n": "Mateo Smith",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Joaquin Tapia Pacheco",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Dante Espinoza Pinto",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "David Hernandez",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Ibsan Alfaro",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Cristobal Fuentes",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Huber Vergara Cornejo",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Santiago Jerves Ordóñez",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Ignacio Rodrigo Silva Bauzá",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "21-30",
+"n": "Hector Pacheco Huechuqueo",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Matias Oyarzun Rojas",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "José Ignacio Salinas Hinojosa",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Eduardo Infiesta",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Carlos Alberto Morales",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Jullian Bass Lagos",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Jesus Berrios",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Ignacio Rojas Contreras",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Luis Ortiz",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "31-39",
+"n": "Cristobal Salazar",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Andrés Bravo Eluchans",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Sebastian Palma",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Roberto Lazo Hinrichs",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Ricardo Martínez Meier",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Juan Ramon Vidal Becerra",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Ralph Peña Muñoz",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Oscar Rodriguez Triviño",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Nelson Videla",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "40-49",
+"n": "Jose Ignacio Abarca Sanchez",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Nicolas Bernier Reyes",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Francisco Matus Gálvez",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Claudio Ulloa Guzman",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Jose Pacheco",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Julio Villegas",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Jorge Jiménez Díaz",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Juan Luis Hernandez Alvarado",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Sergio Cadiu",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "50-59",
+"n": "Alvaro Inostroza Marin",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Jaime Mateluna",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Sergio Goñi",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Ernesto Ojeda Silva",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Arnaud Yates",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Rene Del Rio",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Renzo Peppi",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Jorge Castillo",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Miguel Povez",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "60-69",
+"n": "Hugo Velasco Orozco",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "70+",
+"n": "Fernando Ramirez Campos",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "70+",
+"n": "Gabriel Contreras Espinoza",
+"p": 8
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Marc Jux",
+"p": 10,
+"n2": "Rafael Jux"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Jose Luis Vergara Arellano",
+"p": 8,
+"n2": "Antonio Vergara Elton"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Maximiliano Oviedo Rivas",
+"p": 7,
+"n2": "Marcos Oviedo Aguilera"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Francisco Garate",
+"p": 6,
+"n2": "Renato Garate Barrera"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Fabian Acevedo",
+"p": 5,
+"n2": "Isabella Acevedo Arce"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Pablo Vergara",
+"p": 4,
+"n2": "Diego Vergara"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Andrés Ignacio Castillo Bracho",
+"p": 3,
+"n2": "Lucas Alejandro Castillo Marcano"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Agustina Saez",
+"p": 2,
+"n2": "Felipe Saez"
+},
+{
+"c": "Duplas padre hij@",
+"s": "Dupla",
+"e": "General",
+"n": "Juan Jose Pastorino",
+"p": 1,
+"n2": "Leonardo Pastorino"
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "General",
+"n": "Fernanda Castro",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "General",
+"n": "Catalina Escudero",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "General",
+"n": "Carolina Biehl Peñafiel",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "General",
+"n": "Maria de los Angeles Araya Honores",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Damas",
+"e": "General",
+"n": "Magdalena Eluchans",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Patricio Farias",
+"p": 10
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Matias Urzua",
+"p": 8
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Hugo Pino Lucero",
+"p": 7
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Ramón Sandoval",
+"p": 6
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Raúl Aguilera Vásquez",
+"p": 5
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Claudio Borquez Hernandez",
+"p": 4
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Maximo Quililongo",
+"p": 3
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Pablo Penagos",
+"p": 2
+},
+{
+"c": "Experto",
+"s": "Varones",
+"e": "General",
+"n": "Cristian Correa Muñoz",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Isadora Borquez",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Pamela Vasquez Molina",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Caroline",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Francisca Soto",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Camila Martinez",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Pilar Cabrera Medina",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Patricia Ortiz Medel",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Camila Yates Musalem",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Damas",
+"e": "General",
+"n": "Lorena Herrera Kong",
+"p": 1
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Matias Oyarzun Rojas",
+"p": 10
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Joaquin Tapia Pacheco",
+"p": 8
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "José Ignacio Salinas Hinojosa",
+"p": 7
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Eduardo Infiesta",
+"p": 6
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Carlos Alberto Morales",
+"p": 5
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Jullian Bass Lagos",
+"p": 4
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Andrés Bravo Eluchans",
+"p": 3
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Alonso Acevedo",
+"p": 2
+},
+{
+"c": "Intermedio",
+"s": "Varones",
+"e": "General",
+"n": "Sebastian Palma",
+"p": 1
+}
+]
+}

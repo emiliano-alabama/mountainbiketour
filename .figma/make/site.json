@@ -1,0 +1,12 @@
+{
+  "title": "MTB Tour",
+  "description": "MTB Tour 2026, el tour de mountain bike más importante de Chile: 6 fechas, categorías Familiar, Intermedio, Experto, Gravel, E-Bike y MTB Kids. Gran final el 25 de octubre en Hacienda Picarquín.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "language": "es"
+}
