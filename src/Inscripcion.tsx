@@ -120,7 +120,7 @@ export default function Inscripcion() {
             {fechaLarga(f.iso)}
             {f.largada && ` · desde las ${f.largada} hrs`}
           </p>
-          {!f.lugar && <p className="mt-1 text-sm text-slate">{nombreLugar(f)}: la anunciaremos en este sitio.</p>}
+          {!f.lugar && <p className="mt-1 text-sm text-slate">{nombreLugar(f)}: lo anunciaremos en este sitio.</p>}
           {f.distancias && (
             <ul className="mt-4 flex flex-wrap gap-2">
               {f.distancias.map((d) => (

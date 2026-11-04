@@ -168,7 +168,7 @@ function Calendario() {
               <span className="text-brand">una temporada</span> sobre dos ruedas
             </>
           }
-          intro="Seis fechas entre marzo y noviembre, cada una en una viña, parque o hacienda distinta. Las entradas de todas las fechas ya están a la venta; las sedes se anunciarán pronto."
+          intro="Seis fechas entre marzo y noviembre, cada una en una viña, parque o hacienda distinta. Las entradas de todas las fechas ya están a la venta; los lugares se anunciarán pronto."
         />
 
         <div className="reveal relative">
@@ -387,7 +387,7 @@ function Agenda() {
                   </div>
                 </>
               ) : (
-                <p className="mt-3 leading-relaxed text-slate">Anunciaremos la sede y cómo llegar en este sitio y en Instagram @mountainbiketour. El estacionamiento en el campamento base es gratuito.</p>
+                <p className="mt-3 leading-relaxed text-slate">Anunciaremos el lugar y cómo llegar en este sitio y en Instagram @mountainbiketour. El estacionamiento en el campamento base es gratuito.</p>
               )}
             </article>
             <article className="reveal rounded-3xl bg-white p-6 ring-1 ring-line md:p-7">

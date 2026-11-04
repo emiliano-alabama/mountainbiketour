@@ -207,7 +207,7 @@ export const FECHAS: Fecha[] = [
 ]
 
 // Nombre visible de la sede
-export const nombreLugar = (f: Fecha) => f.lugar || 'Sede por confirmar'
+export const nombreLugar = (f: Fecha) => f.lugar || 'Lugar por confirmar'
 
 // La fecha destacada es la primera con tickets disponibles (o la última de la temporada)
 const hoy = new Date().toISOString().slice(0, 10)
@@ -393,7 +393,7 @@ export const NOTICIAS: Noticia[] = [
 export const FAQ = [
   {
     q: '¿Cuándo y dónde se realiza el MTB Tour?',
-    a: 'Son 6 fechas al año, entre marzo y noviembre. En 2027: 7 de marzo, 25 de abril, 13 de junio, 25 de julio, 3 de octubre y 21 de noviembre. Las sedes se anunciarán en este sitio y en Instagram @mountainbiketour.',
+    a: 'Son 6 fechas al año, entre marzo y noviembre. En 2027: 7 de marzo, 25 de abril, 13 de junio, 25 de julio, 3 de octubre y 21 de noviembre. Los lugares se anunciarán en este sitio y en Instagram @mountainbiketour.',
   },
   {
     q: '¿Hay categorías para distintos niveles?',
