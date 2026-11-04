@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import logoColor from '@/assets/mtb/logos/mtb-logo-1.png'
 import fotoCierre from '@/assets/mtb/cat-experto.jpg'
 import avisoFotos from '@/assets/mtb/aviso-fotos.jpg'
@@ -609,10 +609,10 @@ function Noticias() {
 
 function NoticiaModal({ noticia, onClose }: { noticia: Noticia | null; onClose: () => void }) {
   const cerrarRef = useRef<HTMLButtonElement>(null)
-  const [cargada, setCargada] = useState(false)
+  const textoRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!noticia) return
-    setCargada(false)
+    textoRef.current?.scrollTo(0, 0)
     const previo = document.activeElement as HTMLElement | null
     cerrarRef.current?.focus()
     document.body.style.overflow = 'hidden'
@@ -658,48 +658,27 @@ function NoticiaModal({ noticia, onClose }: { noticia: Noticia | null; onClose: 
           </button>
         </header>
 
-        {/* Nota completa: se carga desde el medio que la publicó */}
-        <div className="relative min-h-0 flex-1 bg-snow">
-          {noticia.nota ? (
-            <>
-              {!cargada && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center" role="status">
-                  <span className="h-10 w-10 animate-spin rounded-full border-4 border-line border-t-brand" aria-hidden="true" />
-                  <p className="text-sm text-slate">Cargando la nota completa…</p>
-                </div>
-              )}
-              <iframe
-                key={noticia.nota}
-                src={noticia.nota}
-                title={`Nota completa: ${noticia.titulo}`}
-                onLoad={() => setCargada(true)}
-                className={`h-full w-full bg-white transition-opacity duration-300 ${cargada ? 'opacity-100' : 'opacity-0'}`}
-              />
-            </>
-          ) : (
-            <div className="h-full overflow-y-auto">
-              <img src={noticia.img} alt="" className="aspect-[16/9] w-full object-cover" />
-              <div className="space-y-4 p-6 text-lg leading-relaxed text-ink/85 md:p-10">
-                {noticia.cuerpo.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-            </div>
-          )}
+        {/* Nota completa, con el texto publicado en mountainbiketour.cl */}
+        <div ref={textoRef} className="min-h-0 flex-1 overflow-y-auto">
+          <img src={noticia.img} alt="" className="aspect-[16/9] max-h-[50svh] w-full object-cover" />
+          <div className="mx-auto max-w-3xl px-6 py-8 md:px-10 md:py-10">
+            <CuerpoNoticia lineas={noticia.cuerpo} />
+          </div>
         </div>
 
         {/* Pie con enlaces */}
         <footer className="flex flex-wrap items-center gap-2 border-t border-line px-5 py-3 md:px-7">
-          {noticia.nota && (
-            <a href={noticia.nota} target="_blank" rel="noopener noreferrer" className={enlaceBtn}>
-              Abrir en RideChile <Arrow />
-            </a>
+          {noticia.enlaces.map((l) =>
+            l.href.startsWith('#') ? (
+              <a key={l.href} href={l.href} onClick={onClose} className={enlaceBtn}>
+                {l.label} <Arrow />
+              </a>
+            ) : (
+              <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className={enlaceBtn}>
+                {l.label} <Arrow />
+              </a>
+            ),
           )}
-          {noticia.enlaces.map((l) => (
-            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className={enlaceBtn}>
-              {l.label} <Arrow />
-            </a>
-          ))}
           {/* Al abrir la ticketera se cierra la noticia, para no apilar dos modales */}
           <span onClick={onClose} className="contents">
             <CtaButton href={FECHA_DESTACADA.inscripcion ?? LINKS.inscripcion} className="ml-auto px-5 py-2.5">
@@ -710,6 +689,35 @@ function NoticiaModal({ noticia, onClose }: { noticia: Noticia | null; onClose: 
       </article>
     </div>
   )
+}
+
+// Convierte las líneas de la nota ('## ', '### ', '- ' o párrafo) en títulos, listas y párrafos
+function CuerpoNoticia({ lineas }: { lineas: string[] }) {
+  const bloques: ReactNode[] = []
+  let items: string[] = []
+  const cerrarLista = () => {
+    if (!items.length) return
+    bloques.push(
+      <ol key={`l${bloques.length}`} className="space-y-1 pl-1">
+        {items.map((t) => (
+          <li key={t} className="flex gap-3 border-b border-line py-1.5 last:border-0">
+            <span className="h-2 w-2 shrink-0 translate-y-2.5 rounded-full bg-brand" aria-hidden="true" />
+            {t}
+          </li>
+        ))}
+      </ol>,
+    )
+    items = []
+  }
+  lineas.forEach((l, i) => {
+    if (l.startsWith('- ')) return void items.push(l.slice(2))
+    cerrarLista()
+    if (l.startsWith('## ')) bloques.push(<h3 key={i} className="display pt-6 text-3xl">{l.slice(3)}</h3>)
+    else if (l.startsWith('### ')) bloques.push(<h4 key={i} className="eyebrow pt-3 text-brand">{l.slice(4)}</h4>)
+    else bloques.push(<p key={i}>{l}</p>)
+  })
+  cerrarLista()
+  return <div className="space-y-4 text-lg leading-relaxed text-ink/85">{bloques}</div>
 }
 
 /* ───────────────────────── FAQ ───────────────────────── */
