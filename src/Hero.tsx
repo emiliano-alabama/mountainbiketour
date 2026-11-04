@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import logoBlue from "@/assets/mtb/logos/mtb-logo-1.png"
-import { FECHA_DESTACADA, FECHAS, LINKS, NAV, NEXT_RACE } from "@/data"
+import { FECHA_DESTACADA, FECHAS, LINKS, MARCA, NAV, NEXT_RACE, nombreLugar } from "@/data"
 import { Arrow, Countdown, CtaButton, useCountdown } from "@/ui"
 
 const PlayIcon = () => (
@@ -27,7 +27,7 @@ function BarraCuenta() {
           <span className="hidden sm:inline">
             {" "}
             · {FECHA_DESTACADA.dia} {FECHA_DESTACADA.mes.toLowerCase()} ·{" "}
-            {FECHA_DESTACADA.lugar}
+            {nombreLugar(FECHA_DESTACADA)}
           </span>
         </span>
         <span className="flex shrink-0 items-center gap-3">
@@ -165,7 +165,8 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
   const esDestacada = f === FECHA_DESTACADA
   const corriendo = !pausa && !sobreLinea
   const ir = (n: number) => setI((n + FECHAS.length) % FECHAS.length)
-  const [linea1, ...resto] = f.lugar.split(" ")
+  // Título: la sede cuando está confirmada; si no, "1ª fecha / 7 de marzo"
+  const [linea1, ...resto] = f.lugar ? f.lugar.split(" ") : [`${f.n}ª fecha`, ...fechaLarga(f.iso).replace(/^\S+ /, "").split(" ")]
   const estado = esDestacada
     ? f.agotado
       ? "Última fecha"
@@ -182,7 +183,7 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
       aria-label="Fechas de la temporada"
     >
       <h1 className="sr-only">
-        MTB Tour 2026, el tour de mountain bike más importante de Chile
+        MTB Tour {MARCA.temporada}, el tour de mountain bike más importante de Chile
       </h1>
 
       {/* Fondos: una foto por fecha, con fundido y zoom lento */}
@@ -195,7 +196,8 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
             k === i ? "kenburns opacity-100" : "opacity-0"
           }`}
           fetchPriority={k === inicio ? "high" : "low"}
-        />
+        style={{ objectPosition: s.foco ?? "50% 30%" }}
+          />
       ))}
       <div
         className="absolute inset-0 hidden bg-[linear-gradient(90deg,var(--color-snow)_0%,rgba(244,247,249,0.88)_30%,rgba(244,247,249,0.2)_52%,rgba(244,247,249,0)_64%)] md:block"
@@ -226,7 +228,7 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
               {estado}
             </span>
             <span className="eyebrow text-slate">
-              Fecha {f.n} de {FECHAS.length} · Temporada 2026
+              Fecha {f.n} de {FECHAS.length} · Temporada {MARCA.temporada}
             </span>
             {f.edicion && (
               <span className="rounded-full bg-gradient-to-r from-[#ff6a2b] to-[#e2462f] px-3 py-1.5 font-mono text-xs font-semibold uppercase text-white">
@@ -331,7 +333,7 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
             <p className="eyebrow text-brand">Próxima fecha</p>
             <p className="display mt-2 text-3xl">
               {FECHA_DESTACADA.dia} {FECHA_DESTACADA.mes} ·{" "}
-              {FECHA_DESTACADA.lugar}
+              {nombreLugar(FECHA_DESTACADA)}
             </p>
             <div className="mt-4 flex items-center gap-3">
               <CtaButton
@@ -447,7 +449,7 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
                           : "font-medium text-slate group-hover:text-ink"
                       }`}
                     >
-                      {s.lugar}
+                      {s.lugar || `Fecha ${s.n}`}
                     </span>
                   </button>
                 </li>

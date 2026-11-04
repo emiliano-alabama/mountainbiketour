@@ -21,6 +21,7 @@ import {
   CATEGORIAS,
   FAQ,
   FECHAS,
+  nombreLugar,
   FECHA_DESTACADA,
   LINKS,
   MARCA,
@@ -33,6 +34,8 @@ import {
 } from '@/data'
 
 /* ───────────────────────── utilidades ───────────────────────── */
+
+const MESES: Record<string, string> = { Ene: 'enero', Feb: 'febrero', Mar: 'marzo', Abr: 'abril', May: 'mayo', Jun: 'junio', Jul: 'julio', Ago: 'agosto', Sep: 'septiembre', Oct: 'octubre', Nov: 'noviembre', Dic: 'diciembre' }
 
 function useReveal() {
   useEffect(() => {
@@ -157,7 +160,7 @@ function Calendario() {
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-8 md:py-28">
         <SectionHead
           id="fechas-t"
-          eyebrow="Calendario 2026"
+          eyebrow={`Calendario ${MARCA.temporada}`}
           title={
             <>
               Seis fechas,
@@ -165,7 +168,7 @@ function Calendario() {
               <span className="text-brand">una temporada</span> sobre dos ruedas
             </>
           }
-          intro="Cada fecha en una viña, parque o hacienda distinta. La temporada cierra el 25 de octubre con la gran final en Hacienda Picarquín."
+          intro="Seis fechas entre marzo y noviembre, cada una en una viña, parque o hacienda distinta. Las entradas de todas las fechas ya están a la venta; las sedes se anunciarán pronto."
         />
 
         <div className="reveal relative">
@@ -192,27 +195,31 @@ function Calendario() {
 
           <ol className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 lg:grid-cols-6">
             {FECHAS.map((f) => {
-              const final = !f.agotado
+              const destacada = f === FECHA_DESTACADA
+              const aLaVenta = !f.agotado && !!f.inscripcion
+              const esFinal = f.n === FECHAS.length
               return (
                 <li
                   key={f.n}
-                  className={`group relative w-[72vw] shrink-0 snap-start overflow-hidden rounded-2xl bg-white sm:w-[44vw] md:w-auto ${final ? 'ring-[3px] ring-ink' : 'ring-1 ring-line'}`}
+                  className={`group relative w-[72vw] shrink-0 snap-start overflow-hidden rounded-2xl bg-white sm:w-[44vw] md:w-auto ${destacada ? 'ring-[3px] ring-ink' : 'ring-1 ring-line'}`}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <img src={f.img} alt="Ciclistas en una fecha del MTB Tour" loading="lazy" className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${final ? '' : 'saturate-[0.85]'}`} />
-                    <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 font-mono text-[0.7rem] font-semibold ${final ? 'bg-volt text-white' : 'bg-white/90 text-white'}`}>
+                    <img src={f.img} alt="Ciclistas en una fecha del MTB Tour" loading="lazy" className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${aLaVenta ? '' : 'saturate-[0.85]'}`} />
+                    <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 font-mono text-[0.7rem] font-semibold ${destacada ? 'bg-volt text-white' : 'bg-white/90 text-white'}`}>
                       Fecha {f.n}
                     </span>
-                    {final && <span className="absolute right-3 top-3 rounded-full bg-ink px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-volt-soft">Gran final</span>}
+                    {(destacada || esFinal) && (
+                      <span className="absolute right-3 top-3 rounded-full bg-ink px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-volt-soft">{destacada ? 'Próxima' : 'Gran final'}</span>
+                    )}
                   </div>
                   <div className="p-4">
                     <div className="display text-4xl">
                       {f.dia} <span className="text-brand">{f.mes}</span>
                     </div>
-                    <div className="mt-1 min-h-[2.5rem] text-sm font-semibold leading-tight">{f.lugar}</div>
+                    <div className={`mt-1 min-h-[2.5rem] text-sm font-semibold leading-tight ${f.lugar ? '' : 'text-slate'}`}>{nombreLugar(f)}</div>
                     <div className="mt-3 border-t border-line pt-3">
-                      {final ? (
-                        <a href={LINKS.inscripcion} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold uppercase text-brand after:absolute after:inset-0 hover:text-ink">
+                      {aLaVenta ? (
+                        <a href={f.inscripcion} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-sm font-bold uppercase text-brand after:absolute after:inset-0 hover:text-ink">
                           Comprar tickets <Arrow />
                         </a>
                       ) : (
@@ -239,15 +246,15 @@ function Calendario() {
 
 /* ───────────────────────── rutas ───────────────────────── */
 
-function Profile({ ruta, max }: { ruta: Ruta; max: number }) {
+function Profile({ ruta }: { ruta: Ruta }) {
   const W = 300
   const H = 110
   const shape = PROFILE_SHAPES[ruta.nombre] ?? [0, 1, 0]
-  const peak = (ruta.dmas / max) * (H - 14)
+  const peak = ruta.escala * (H - 14)
   const pts: [number, number][] = shape.map((v, i) => [(i / (shape.length - 1)) * W, H - 4 - v * peak])
   const d = toPath(pts)
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-28 w-full" role="img" aria-label={`Perfil ilustrativo: ${ruta.km} km con ${ruta.dmas} m de desnivel positivo`}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="h-28 w-full" role="img" aria-label={`Perfil ilustrativo de ${ruta.nombre}: ${ruta.km} km`}>
       <path d={`${d} L${W},${H} L0,${H} Z`} fill="var(--color-sky)" />
       <path d={d} fill="none" stroke="var(--color-brand)" strokeWidth="2.5" strokeLinejoin="round" />
       {[0.25, 0.5, 0.75].map((g) => (
@@ -258,19 +265,19 @@ function Profile({ ruta, max }: { ruta: Ruta; max: number }) {
 }
 
 function Rutas() {
-  const max = Math.max(...RUTAS.map((r) => r.dmas))
+  const f = FECHA_DESTACADA
   return (
     <section id="rutas" className="relative bg-white" aria-labelledby="rutas-t">
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-8 md:py-28">
         <SectionHead
           id="rutas-t"
-          eyebrow="Circuitos 6ta fecha · Hacienda Picarquín"
+          eyebrow={`Distancias ${MARCA.temporada}`}
           title={
             <>
               Elige tu <span className="text-brand">circuito</span>
             </>
           }
-          intro="Tres circuitos para seis categorías. Son preliminares y pueden cambiar antes de la carrera."
+          intro="Tres circuitos para seis categorías. Estas son las distancias de referencia; el circuito exacto de cada fecha, con su desnivel, se publica antes de la carrera."
         />
 
         <div className="grid gap-5 md:grid-cols-3">
@@ -284,14 +291,14 @@ function Rutas() {
                     </span>
                   ))}
                 </h3>
-                <span className="font-mono text-xs text-slate">≈{Math.round(r.dmas / r.km)} m/km</span>
+                <span className="font-mono text-xs text-slate">{r.dmas ? `D+${r.dmas.toLocaleString('es-CL')} m` : 'Según la fecha'}</span>
               </div>
               <div className="mt-4 flex items-end gap-4">
-                <span className="display text-[6.5rem] leading-[0.75]">{r.km}K</span>
-                <span className="mb-1 rounded-md bg-ink px-2 py-1 font-mono text-sm font-semibold text-volt-soft">D+{r.dmas.toLocaleString('es-CL')} m</span>
+                <span className="display text-[5rem] leading-[0.75] md:text-[5.5rem]">{r.km}</span>
+                <span className="mb-1 rounded-md bg-ink px-2 py-1 font-mono text-sm font-semibold text-volt-soft">km</span>
               </div>
               <div className="mt-6">
-                <Profile ruta={r} max={max} />
+                <Profile ruta={r} />
               </div>
               <p className="mt-5 flex-1 leading-relaxed text-slate">{r.desc}</p>
               {r.kmz && (
@@ -305,19 +312,19 @@ function Rutas() {
             </article>
           ))}
         </div>
-        <p className="mt-4 font-mono text-xs text-slate">Perfiles ilustrativos, escalados según el desnivel positivo de cada circuito.</p>
+        <p className="mt-4 font-mono text-xs text-slate">Perfiles ilustrativos. Rangos de distancia corridos en la temporada 2026.</p>
 
         <div className="reveal mt-8 flex flex-col gap-4 rounded-3xl bg-sky p-6 sm:flex-row sm:items-center md:p-8">
           <span className="display shrink-0 text-5xl text-brand">MTB Kids</span>
           <p className="leading-relaxed text-ink/80">
-            Circuito especial para niñas y niños de <strong>2 a 14 años</strong>. La recepción es de 08:30 a 09:20 hrs, el mismo día de la carrera.
+            Un espacio para niñas y niños de <strong>4 a 12 años</strong>, guiados por monitores especializados. La recepción es antes de las largadas, el mismo día de la carrera.
           </p>
         </div>
 
         <div className="reveal relative mt-16 overflow-hidden rounded-3xl">
-          <img src={rutasImg} alt="Largada del MTB Tour en Hacienda Picarquín" loading="lazy" className="h-[340px] w-full object-cover object-[50%_45%] md:h-[420px]" />
+          <img src={rutasImg} alt="Ciclistas del MTB Tour en un sendero entre álamos" loading="lazy" className="h-[340px] w-full object-cover object-[50%_45%] md:h-[420px]" />
           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/75 to-transparent p-6 md:p-10">
-            <p className="display max-w-2xl text-5xl text-white md:text-7xl">¿Listo para la gran final en Picarquín?</p>
+            <p className="display max-w-2xl text-5xl text-white md:text-7xl">¿Listo para el {f.dia} de {MESES[f.mes] ?? f.mes}?</p>
             <CtaButton href={LINKS.inscripcion} className="mt-6 self-start">
               Inscríbete aquí
             </CtaButton>
@@ -336,7 +343,7 @@ function Agenda() {
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-8 md:py-28">
         <SectionHead
           id="agenda-t"
-          eyebrow="Agenda preliminar · 6ta fecha"
+          eyebrow="Agenda típica"
           title={
             <>
               Una mañana
@@ -344,7 +351,7 @@ function Agenda() {
               <span className="text-brand">sobre ruedas</span>
             </>
           }
-          intro="Largadas escalonadas desde las 09:30, post carrera y premiación al mediodía."
+          intro="Así es una jornada habitual del MTB Tour: largadas escalonadas desde las 09:30 y premiación al mediodía. La agenda de cada fecha se confirma antes de la carrera."
         />
 
         <div className="grid gap-10 lg:grid-cols-12">
@@ -365,25 +372,34 @@ function Agenda() {
 
           <div className="flex flex-col gap-4 lg:col-span-5">
             <article className="reveal rounded-3xl bg-white p-6 ring-1 ring-line md:p-7">
-              <p className="eyebrow text-brand">Cómo llegar</p>
-              <h3 className="display mt-2 text-4xl">Hacienda Picarquín</h3>
-              <p className="mt-3 leading-relaxed text-slate">
-                Abre la ubicación en Waze para llegar directo al campamento base. El estacionamiento es gratuito.
-              </p>
-              <a href={LINKS.waze} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#33ccff] px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink transition-colors hover:bg-ink hover:text-white">
-                Abrir ruta en Waze <Arrow />
-              </a>
+              <p className="eyebrow text-brand">Cómo llegar · Fecha {FECHA_DESTACADA.n}</p>
+              <h3 className="display mt-2 text-4xl">{nombreLugar(FECHA_DESTACADA)}</h3>
+              {FECHA_DESTACADA.ubicacion ? (
+                <>
+                  <p className="mt-3 leading-relaxed text-slate">Abre la ubicación para llegar directo al campamento base. El estacionamiento es gratuito.</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <a href={`https://waze.com/ul?ll=${FECHA_DESTACADA.ubicacion.lat},${FECHA_DESTACADA.ubicacion.lng}&navigate=yes`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#33ccff] px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink transition-colors hover:bg-ink hover:text-white">
+                      Abrir en Waze <Arrow />
+                    </a>
+                    <a href={`https://www.google.com/maps/search/?api=1&query=${FECHA_DESTACADA.ubicacion.lat},${FECHA_DESTACADA.ubicacion.lng}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border-2 border-ink px-5 py-2 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-white">
+                      Google Maps <Arrow />
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <p className="mt-3 leading-relaxed text-slate">Anunciaremos la sede y cómo llegar en este sitio y en Instagram @mountainbiketour. El estacionamiento en el campamento base es gratuito.</p>
+              )}
             </article>
             <article className="reveal rounded-3xl bg-white p-6 ring-1 ring-line md:p-7">
               <p className="eyebrow text-brand">Entrega de kits</p>
               <p className="mt-3 leading-relaxed">
-                Número y chip se retiran <strong>el día de la carrera, de 08:15 a 09:15 hrs</strong>, en el campamento base. Incluye la polera oficial del evento.
+                Número y chip se retiran <strong>el día de la carrera, habitualmente de 08:15 a 09:15 hrs</strong>, en el campamento base. Incluye la polera oficial del evento.
               </p>
             </article>
             <article className="reveal rounded-3xl bg-ink p-6 text-white md:p-7">
               <p className="eyebrow text-volt-soft">Importante</p>
               <p className="mt-3 leading-relaxed text-white/85">
-                Inscríbete en la categoría que vaya con tu nivel y revisa tu hora de largada: cada categoría sale en un horario distinto. Los circuitos son <strong className="text-white">preliminares</strong> y pueden cambiar; la ruta está señalizada, con puntos de hidratación y asistencia.
+                Inscríbete en la categoría que vaya con tu nivel y revisa tu hora de largada: cada categoría sale en un horario distinto. El circuito de cada fecha se publica antes de la carrera; la ruta está señalizada, con puntos de hidratación y asistencia.
               </p>
             </article>
           </div>
@@ -485,7 +501,7 @@ function Resultados() {
     <section id="resultados" className="bg-white" aria-labelledby="res-t">
       <div className="mx-auto grid max-w-[1400px] gap-16 px-5 py-20 md:px-8 md:py-28 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <p className="eyebrow mb-4 text-brand">Resultados 2026</p>
+          <p className="eyebrow mb-4 text-brand">Resultados {MARCA.temporada}</p>
           <h2 id="res-t" className="display reveal text-[clamp(3rem,6vw,5rem)]">
             Revisa tus tiempos
           </h2>
@@ -498,7 +514,7 @@ function Resultados() {
                     <span className="display text-2xl">
                       {f.dia} {f.mes}
                     </span>
-                    <span className="font-semibold">{f.lugar}</span>
+                    <span className="font-semibold">{nombreLugar(f)}</span>
                     <span className="flex items-center gap-2 text-sm font-bold uppercase text-brand">
                       <span className="hidden sm:inline">Ver</span> <Arrow className="transition-transform group-hover:translate-x-1" />
                     </span>
@@ -509,19 +525,22 @@ function Resultados() {
                     <span className="display text-2xl">
                       {f.dia} {f.mes}
                     </span>
-                    <span className="font-semibold">{f.lugar}</span>
+                    <span className="font-semibold">{nombreLugar(f)}</span>
                     <span className="font-mono text-xs uppercase">Próximamente</span>
                   </div>
                 )}
               </li>
             ))}
           </ul>
+          <a href={LINKS.resultadosAnteriores} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand hover:text-ink">
+            Ver resultados {MARCA.temporada - 1} en Cronolap <Arrow />
+          </a>
         </div>
 
         <div className="lg:col-span-5">
           <a href="#ranking" className="reveal group flex h-full flex-col justify-between gap-10 rounded-3xl bg-ink p-7 text-white md:p-9">
             <div>
-              <p className="eyebrow text-volt-soft">Acumulado 2026</p>
+              <p className="eyebrow text-volt-soft">Ranking final {MARCA.temporada - 1}</p>
               <p className="display mt-4 text-[clamp(3rem,6vw,5rem)]">Ranking anual</p>
               <p className="mt-4 leading-relaxed text-white/75">Revisa tu posición y tus puntos. Filtra por categoría, sexo y edad, o busca tu nombre.</p>
             </div>
@@ -917,9 +936,7 @@ function Footer() {
 
 // Altímetro: el scroll de la página es el desnivel del circuito más largo
 function Altimetro({ progress }: { progress: number }) {
-  const ruta = RUTAS[RUTAS.length - 1]
-  const total = ruta.dmas
-  const m = Math.round(progress * total)
+  const m = Math.round(progress * 100)
   const top = progress > 0.985
   return (
     <div className="pointer-events-none fixed bottom-6 right-6 z-40 hidden items-center gap-3 rounded-full bg-white/90 py-2 pl-2 pr-4 shadow-[0_10px_30px_-10px_rgba(10,27,42,0.3)] ring-1 ring-line backdrop-blur lg:flex" aria-hidden="true">
@@ -933,9 +950,9 @@ function Altimetro({ progress }: { progress: number }) {
         </svg>
       </div>
       <div className="leading-tight">
-        <div className="font-mono text-sm font-semibold tabular-nums">{top ? '¡Meta!' : `D+ ${m.toLocaleString('es-CL')} m`}</div>
+        <div className="font-mono text-sm font-semibold tabular-nums">{top ? '¡Meta!' : `${m}% del circuito`}</div>
         <div className="font-mono text-[0.65rem] uppercase text-slate">
-          {ruta.nombre} {ruta.km}K
+          MTB Tour {MARCA.temporada}
         </div>
       </div>
     </div>

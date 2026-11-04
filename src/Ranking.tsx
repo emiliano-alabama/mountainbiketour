@@ -149,7 +149,7 @@ export default function Ranking() {
         <div className="reveal mb-10 grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="eyebrow mb-4 flex flex-wrap items-center gap-3 text-brand">
-              Acumulado 2026
+              Temporada 2026
               {data.nota && <span className="rounded-full bg-sky px-3 py-1 normal-case tracking-normal text-ink">{data.nota}</span>}
             </p>
             <h2 id="ranking-t" className="display text-[clamp(3rem,7vw,6rem)]">
@@ -168,7 +168,7 @@ export default function Ranking() {
               ))}
             </div>
             <p className="text-lg leading-relaxed text-slate">
-              En cada fecha, los 9 primeros de cada categoría suman puntaje (10, 8, 7, 6, 5, 4, 3, 2 y 1). El acumulado tiene premiación anual.
+              En cada fecha, los 9 primeros de cada categoría suman puntaje (10, 8, 7, 6, 5, 4, 3, 2 y 1). El ranking 2027 parte con la 1ª fecha, el 7 de marzo.
             </p>
           </div>
         </div>

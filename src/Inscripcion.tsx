@@ -1,56 +1,59 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { FECHA_DESTACADA, LINKS } from '@/data'
+import { FECHA_DESTACADA, FECHAS, nombreLugar, type Fecha } from '@/data'
 
 /*
- * Modal de inscripción con la ticketera Welcu.
+ * Modal de inscripción con la ticketera Welcu de cada fecha.
  *
- * - Cualquier enlace a la página de inscripción (botones "Inscríbete", "Comprar tickets", etc.)
- *   abre este modal en vez de navegar. Ctrl/Cmd + clic sigue abriendo la página en otra pestaña.
- * - El script de Welcu se precarga poco después de entrar al sitio, porque tarda ~5 s en
- *   dibujar el formulario. El contenedor nunca se desmonta: Welcu lo busca por id una sola vez.
+ * - Cualquier enlace a la inscripción de una fecha (welcu.com/demaria/climbingN) abre este modal con la
+ *   ticketera de ESA fecha. Ctrl/Cmd + clic sigue abriendo la página de Welcu en otra pestaña.
+ * - Welcu tarda ~5 s en dibujar el formulario: se precarga la fecha destacada al entrar al sitio y las
+ *   demás cuando se piden. Los contenedores nunca se desmontan, porque Welcu los busca por id una sola vez.
  */
 
-const ticketera = FECHA_DESTACADA.ticketera
-const URLS_INSCRIPCION = new Set([LINKS.inscripcion, FECHA_DESTACADA.inscripcion].filter(Boolean) as string[])
+const CON_TICKETERA = FECHAS.filter((f) => f.ticketera)
+const POR_URL = new Map(CON_TICKETERA.flatMap((f) => [f.inscripcion, f.ticketera!.pagina].filter(Boolean).map((u) => [u as string, f] as const)))
 
-function cargarWelcu() {
-  if (!ticketera || document.querySelector(`script[data-welcu="${ticketera.id}"]`)) return
+function cargarWelcu(f: Fecha) {
+  const t = f.ticketera
+  if (!t || document.querySelector(`script[data-welcu="${t.id}"]`)) return
   const s = document.createElement('script')
   s.type = 'text/javascript'
   s.async = true
-  s.src = ticketera.script
-  s.dataset.welcu = ticketera.id
+  s.src = t.script
+  s.dataset.welcu = t.id
   document.body.appendChild(s)
 }
 
 const fechaLarga = (iso: string) => {
-  const t = new Date(`${iso}T12:00:00`).toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' })
+  const t = new Date(`${iso}T12:00:00`).toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
   return t.charAt(0).toUpperCase() + t.slice(1)
 }
 
 export default function Inscripcion() {
   const [abierto, setAbierto] = useState(false)
-  const [listo, setListo] = useState(false)
-  const contenedor = useRef<HTMLDivElement>(null)
+  const [activa, setActiva] = useState<Fecha>(FECHA_DESTACADA)
+  const [listos, setListos] = useState<Record<string, boolean>>({})
+  const contenedores = useRef<HTMLDivElement>(null)
   const cerrarRef = useRef<HTMLButtonElement>(null)
 
-  const abrir = useCallback(() => {
-    cargarWelcu()
+  const abrir = useCallback((f: Fecha) => {
+    cargarWelcu(f)
+    setActiva(f)
     setAbierto(true)
   }, [])
 
-  // Precarga del embed
+  // Precarga de la ticketera de la fecha destacada
   useEffect(() => {
-    if (!ticketera) return
-    const t = window.setTimeout(cargarWelcu, 1200)
+    const t = window.setTimeout(() => cargarWelcu(FECHA_DESTACADA), 1200)
     return () => window.clearTimeout(t)
   }, [])
 
-  // Detecta cuándo Welcu terminó de dibujar el formulario
+  // Detecta qué formularios ya dibujó Welcu
   useEffect(() => {
-    const el = contenedor.current
+    const el = contenedores.current
     if (!el) return
-    const revisar = () => setListo(!!el.querySelector('form'))
+    const revisar = () =>
+      setListos(Object.fromEntries(CON_TICKETERA.map((f) => [f.ticketera!.id, !!el.querySelector(`#${f.ticketera!.id} form`)])))
     revisar()
     const mo = new MutationObserver(revisar)
     mo.observe(el, { childList: true, subtree: true })
@@ -59,13 +62,14 @@ export default function Inscripcion() {
 
   // Intercepta los clics en enlaces de inscripción de todo el sitio
   useEffect(() => {
-    if (!ticketera) return
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
       const a = (e.target as Element | null)?.closest?.('a')
-      if (!a || !URLS_INSCRIPCION.has(a.href)) return
+      if (!a || a.closest('[data-modal-inscripcion]')) return
+      const f = POR_URL.get(a.href)
+      if (!f) return
       e.preventDefault()
-      abrir()
+      abrir(f)
     }
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
@@ -86,11 +90,13 @@ export default function Inscripcion() {
     }
   }, [abierto])
 
-  if (!ticketera) return null
-  const f = FECHA_DESTACADA
+  if (!CON_TICKETERA.length) return null
+  const f = activa
+  const listo = !!listos[f.ticketera?.id ?? '']
 
   return (
     <div
+      data-modal-inscripcion
       className={`fixed inset-0 z-[80] flex items-end justify-center bg-ink/70 backdrop-blur-sm transition-opacity duration-300 sm:items-center sm:p-6 ${abierto ? 'opacity-100' : 'pointer-events-none invisible opacity-0'}`}
       role="dialog"
       aria-modal="true"
@@ -103,40 +109,39 @@ export default function Inscripcion() {
       >
         {/* Resumen de la fecha */}
         <aside className="relative shrink-0 overflow-y-auto bg-snow p-6 md:w-[320px] md:p-8">
-          <div className="relative">
-            <p className="eyebrow text-brand">
-              Inscripción · Fecha {f.n}
-              {f.edicion ? ` · ${f.edicion}` : ''}
-            </p>
-            <h2 id="inscripcion-titulo" className="display mt-3 text-[2.6rem] md:text-5xl">
-              {f.lugar}
-            </h2>
-            <p className="mt-2 font-mono text-sm">
-              {fechaLarga(f.iso)}
-              {f.largada && ` · ${f.largada} hrs`}
-            </p>
-            {f.distancias && (
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {f.distancias.map((d) => (
-                  <li key={d} className="rounded-full bg-white px-3 py-1 text-xs font-semibold ring-1 ring-line">
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            )}
-            <ol className="mt-6 hidden space-y-2 text-sm text-slate md:block">
-              <li>
-                <span className="font-mono text-brand">1.</span> Elige tu distancia y la cantidad de tickets.
-              </li>
-              <li>
-                <span className="font-mono text-brand">2.</span> Presiona <strong className="text-ink">Pagar ahora</strong>.
-              </li>
-              <li>
-                <span className="font-mono text-brand">3.</span> Completa tus datos y el pago en Welcu.
-              </li>
-            </ol>
-            {f.afiche && <img src={f.afiche} alt="" aria-hidden="true" className="mt-6 hidden w-full rounded-2xl shadow-[0_20px_40px_-20px_rgba(10,27,42,0.4)] md:block" />}
-          </div>
+          <p className="eyebrow text-brand">
+            Inscripción · Fecha {f.n}
+            {f.edicion ? ` · ${f.edicion}` : ''}
+          </p>
+          <h2 id="inscripcion-titulo" className="display mt-3 text-[2.6rem] md:text-5xl">
+            {f.lugar || `${f.dia} ${f.mes}`}
+          </h2>
+          <p className="mt-2 font-mono text-sm">
+            {fechaLarga(f.iso)}
+            {f.largada && ` · desde las ${f.largada} hrs`}
+          </p>
+          {!f.lugar && <p className="mt-1 text-sm text-slate">{nombreLugar(f)}: la anunciaremos en este sitio.</p>}
+          {f.distancias && (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {f.distancias.map((d) => (
+                <li key={d} className="rounded-full bg-white px-3 py-1 text-xs font-semibold ring-1 ring-line">
+                  {d}
+                </li>
+              ))}
+            </ul>
+          )}
+          <ol className="mt-6 hidden space-y-2 text-sm text-slate md:block">
+            <li>
+              <span className="font-mono text-brand">1.</span> Elige tu distancia y la cantidad de tickets.
+            </li>
+            <li>
+              <span className="font-mono text-brand">2.</span> Presiona <strong className="text-ink">Pagar ahora</strong>.
+            </li>
+            <li>
+              <span className="font-mono text-brand">3.</span> Completa tus datos y el pago en Welcu.
+            </li>
+          </ol>
+          {f.afiche && <img src={f.afiche} alt="" aria-hidden="true" className="mt-6 hidden w-full rounded-2xl shadow-[0_20px_40px_-20px_rgba(10,27,42,0.4)] md:block" />}
         </aside>
 
         {/* Ticketera */}
@@ -163,13 +168,17 @@ export default function Inscripcion() {
                 <p className="text-sm text-slate">Cargando tickets disponibles…</p>
               </div>
             )}
-            {/* Welcu inserta aquí el formulario. No desmontar. */}
-            <div ref={contenedor} id={ticketera.id} className={`welcu_embed ${listo ? '' : 'sr-only'}`} />
+            {/* Welcu inserta aquí cada formulario. No desmontar: solo se muestra el de la fecha activa. */}
+            <div ref={contenedores}>
+              {CON_TICKETERA.map((x) => (
+                <div key={x.ticketera!.id} id={x.ticketera!.id} className={`welcu_embed ${x === f && listo ? '' : 'hidden'}`} />
+              ))}
+            </div>
           </div>
 
           <p className="border-t border-line px-6 py-3 text-xs text-slate">
             Pago seguro a través de Welcu.{' '}
-            <a href={ticketera.pagina} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline underline-offset-2">
+            <a href={f.ticketera?.pagina} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline underline-offset-2">
               ¿No carga? Abre la inscripción en Welcu
             </a>
           </p>

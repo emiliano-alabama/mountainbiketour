@@ -42,14 +42,15 @@ export const MARCA = {
   nombre: 'MTB Tour',
   nombreLargo: 'Mountainbike Tour',
   presentado: 'Bci · Subaru',
-  temporada: 2026,
+  temporada: 2027,
 }
 
 export const LINKS = {
-  inscripcion: 'https://mountainbiketour.cl/inscripcion-6ta-fecha-2026/',
+  // Se reemplaza por la inscripción de la fecha destacada (ver más abajo)
+  inscripcion: 'https://welcu.com/demaria/mountainbiketour1',
   eventos: 'https://welcu.com/demaria',
   video: 'HWdocvktQ7M',
-  waze: 'https://waze.com/ul/h63vybdn1b',
+  resultadosAnteriores: 'https://www.cronolap.cl/eventos',
   bases: 'https://mountainbiketour.cl/wp-content/uploads/2026/06/Bases-MTB.pdf',
   noticias: 'https://mountainbiketour.cl/noticias/',
   instagram: 'https://www.instagram.com/mountainbiketour/',
@@ -75,7 +76,7 @@ export type Fecha = {
   iso: string // AAAA-MM-DD
   dia: string
   mes: string
-  lugar: string
+  lugar: string // vacío = sede por confirmar
   img: string
   agotado: boolean
   resultados?: string
@@ -85,42 +86,132 @@ export type Fecha = {
   inscripcion?: string
   fotos?: string
   distancias?: string[]
+  // Ubicación para "Cómo llegar" (Waze y Google Maps)
+  ubicacion?: { lat: number; lng: number }
+  foco?: string // encuadre de la foto en el hero (CSS object-position), p. ej. '75% 30%'
   afiche?: string // se muestra como popup una vez por visitante
   // Ticketera Welcu: los botones de inscripción abren un modal con este embed
   ticketera?: { id: string; script: string; pagina: string }
 }
 
-// Para cambiar de fecha: actualiza `agotado` y los datos de la fecha siguiente.
-// El hero, la cuenta regresiva y los botones se ajustan solos.
+// Temporada 2027. Cada fecha tiene su propia ticketera Welcu.
+// Al pasar una fecha: marca `agotado: true` y agrega `resultados`. Cuando se confirme la sede, completa `lugar` y `ubicacion`.
+// El hero, la cuenta regresiva y los botones toman la primera fecha no agotada que aún no pasa.
+const DISTANCIAS = ['Familiar', 'Intermedio', 'Experto', 'Gravel', 'E-Bike', 'MTB Kids']
+
 export const FECHAS: Fecha[] = [
-  { n: 1, iso: '2026-03-22', dia: '22', mes: 'Mar', lugar: 'Viña Matetic', img: fecha1, agotado: true, resultados: 'https://www.cronolap.cl/eventos/mountainbike-tour-1ra-fecha' },
-  { n: 2, iso: '2026-05-03', dia: '3', mes: 'May', lugar: 'Viña Casas del Bosque', img: fecha2, agotado: true, resultados: 'https://www.cronolap.cl/eventos/mountainbike-tour-2da-fecha' },
-  { n: 3, iso: '2026-06-14', dia: '14', mes: 'Jun', lugar: 'Viña López Pangue', img: fecha3, agotado: true, resultados: 'https://www.cronolap.cl/eventos/mountainbike-tour-3ra-fecha' },
-  { n: 4, iso: '2026-08-09', dia: '9', mes: 'Ago', lugar: 'Parque Pitama', img: fecha4, agotado: true, resultados: 'https://www.cronolap.cl/eventos/mountainbike-tour-4ta-fecha' },
-  { n: 5, iso: '2026-09-06', dia: '6', mes: 'Sep', lugar: 'Viña Veramonte', img: fecha5, agotado: true, resultados: 'https://www.cronolap.cl/eventos/mountainbike-tour-5ta-fecha', fotos: 'http://q.me-qr.com/2obtqul1' },
+  {
+    n: 1,
+    iso: '2027-03-07',
+    foco: '72% 40%',
+    dia: '7',
+    mes: 'Mar',
+    lugar: '',
+    img: fecha1,
+    agotado: false,
+    largada: '09:30',
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour1',
+    distancias: DISTANCIAS,
+    ticketera: {
+      id: 'welcu_embed_sale_7894779443',
+      script: 'https://welcu.com/demaria/mountainbiketour1/sales/58f3c2a08c.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour1',
+    },
+  },
+  {
+    n: 2,
+    iso: '2027-04-25',
+    dia: '25',
+    mes: 'Abr',
+    lugar: '',
+    img: fecha2,
+    agotado: false,
+    largada: '09:30',
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour2',
+    distancias: DISTANCIAS,
+    ticketera: {
+      id: 'welcu_embed_sale_7896879464',
+      script: 'https://welcu.com/demaria/mountainbiketour2/sales/64d55a4272.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour2',
+    },
+  },
+  {
+    n: 3,
+    iso: '2027-06-13',
+    dia: '13',
+    mes: 'Jun',
+    lugar: '',
+    img: fecha3,
+    agotado: false,
+    largada: '09:30',
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour3',
+    distancias: DISTANCIAS,
+    ticketera: {
+      id: 'welcu_embed_sale_7896979465',
+      script: 'https://welcu.com/demaria/mountainbiketour3/sales/a7242391fb.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour3',
+    },
+  },
+  {
+    n: 4,
+    iso: '2027-07-25',
+    dia: '25',
+    mes: 'Jul',
+    lugar: '',
+    img: fecha4,
+    agotado: false,
+    largada: '09:30',
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour4',
+    distancias: DISTANCIAS,
+    ticketera: {
+      id: 'welcu_embed_sale_7897079466',
+      script: 'https://welcu.com/demaria/mountainbiketour4/sales/6679d18b9c.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour4',
+    },
+  },
+  {
+    n: 5,
+    iso: '2027-10-03',
+    dia: '3',
+    mes: 'Oct',
+    lugar: '',
+    img: fecha5,
+    agotado: false,
+    largada: '09:30',
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour5',
+    distancias: DISTANCIAS,
+    ticketera: {
+      id: 'welcu_embed_sale_7897179467',
+      script: 'https://welcu.com/demaria/mountainbiketour5/sales/f30e42aee9.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour5',
+    },
+  },
   {
     n: 6,
-    iso: '2026-10-25',
-    dia: '25',
-    mes: 'Oct',
-    lugar: 'Hacienda Picarquín',
+    iso: '2027-11-21',
+    dia: '21',
+    mes: 'Nov',
+    lugar: '',
     img: fecha6,
     agotado: false,
-    edicion: 'Gran final',
     largada: '09:30',
-    inscripcion: 'https://mountainbiketour.cl/inscripcion-6ta-fecha-2026/',
-    distancias: ['Familiar 19K', 'Intermedio 25K', 'Gravel 25K', 'Experto 35K', 'E-Bike 35K', 'MTB Kids'],
-    // Sin afiche 2026 todavía: los popups disponibles son de la temporada 2025
+    inscripcion: 'https://welcu.com/demaria/mountainbiketour6',
+    distancias: DISTANCIAS,
+    edicion: 'Gran final',
     ticketera: {
-      id: 'welcu_embed_sale_7279973027',
-      script: 'https://welcu.com/demaria/-1k67/sales/f5519505f4.embed?currency_id=clp&locale=es',
-      pagina: 'https://welcu.com/demaria/mtbtour6',
+      id: 'welcu_embed_sale_7897279468',
+      script: 'https://welcu.com/demaria/mountainbiketour6/sales/b28ef9d0b5.embed?currency_id=clp&locale=es',
+      pagina: 'https://welcu.com/demaria/mountainbiketour6',
     },
   },
 ]
 
+// Nombre visible de la sede
+export const nombreLugar = (f: Fecha) => f.lugar || 'Sede por confirmar'
+
 // La fecha destacada es la primera con tickets disponibles (o la última de la temporada)
-export const FECHA_DESTACADA = FECHAS.find((f) => !f.agotado) ?? FECHAS[FECHAS.length - 1]
+const hoy = new Date().toISOString().slice(0, 10)
+export const FECHA_DESTACADA = FECHAS.find((f) => !f.agotado && f.iso >= hoy) ?? FECHAS[FECHAS.length - 1]
 
 // Chile continental: UTC-3 desde el primer domingo de septiembre hasta el primer domingo de abril; UTC-4 el resto
 function offsetChile(iso: string) {
@@ -136,40 +227,46 @@ function offsetChile(iso: string) {
 // Largada de la fecha destacada (alimenta la cuenta regresiva)
 export const NEXT_RACE = new Date(`${FECHA_DESTACADA.iso}T${FECHA_DESTACADA.largada ?? '09:00'}:00${offsetChile(FECHA_DESTACADA.iso)}`)
 
+// Los botones generales de inscripción llevan a la fecha destacada
+LINKS.inscripcion = FECHA_DESTACADA.inscripcion ?? LINKS.eventos
+
 export type Ruta = {
   nombre: string
   categorias: string[]
-  km: number
-  dmas: number
+  km: string // rango de distancia, p. ej. '25–36'
+  escala: number // altura relativa del perfil ilustrativo (0 a 1)
   desc: string
+  dmas?: number // desnivel exacto, cuando se publique el circuito de la fecha
   kmz?: string
 }
 
-// Circuitos preliminares 6ta fecha (sujetos a modificaciones). Intermedio y Gravel comparten circuito, igual que Experto y E-Bike.
+// Distancias de referencia (rangos corridos en la temporada 2026). Intermedio y Gravel comparten circuito, igual que Experto y E-Bike.
+// El circuito exacto de cada fecha se publica antes de la carrera.
 export const RUTAS: Ruta[] = [
   {
     nombre: 'Familiar',
     categorias: ['Familiar'],
-    km: 19,
-    dmas: 440,
-    desc: 'El circuito para disfrutar en familia, con un enfoque recreativo y menos competitivo.',
+    km: '18–26',
+    escala: 0.4,
+    desc: 'El circuito para disfrutar en familia, con un enfoque recreativo y menos competitivo. Incluye la modalidad padres e hij@s en dupla.',
   },
   {
     nombre: 'Intermedio',
     categorias: ['Intermedio', 'Gravel'],
-    km: 25,
-    dmas: 815,
-    desc: 'Combina tramos técnicos y desafío físico, para ciclistas con experiencia moderada. Es también el circuito de la nueva categoría Gravel.',
+    km: '25–36',
+    escala: 0.7,
+    desc: 'Combina tramos técnicos y desafío físico, para ciclistas que ya pedalean con frecuencia. Es también el circuito de la categoría Gravel.',
   },
   {
     nombre: 'Experto',
     categorias: ['Experto', 'E-Bike'],
-    km: 35,
-    dmas: 1200,
-    desc: 'El recorrido más exigente, con desniveles importantes, para ciclistas avanzados. Lo comparten Experto y E-Bike.',
+    km: '35–44',
+    escala: 1,
+    desc: 'Máxima exigencia en kilometraje y altimetría, para ciclistas avanzados y de élite. Lo comparten Experto y E-Bike.',
   },
 ]
 
+// Agenda típica (basada en la temporada 2026). La de cada fecha se confirma antes de la carrera.
 export const AGENDA = [
   { hora: '08:15', titulo: 'Abre el campamento base', detalle: 'Inicio de atenciones' },
   { hora: '08:15', titulo: 'Retiro de kits', detalle: 'Hasta las 09:15 hrs' },
@@ -214,9 +311,9 @@ export const CATEGORIAS = [
   },
   {
     nombre: 'MTB Kids',
-    nivel: '2 a 14 años',
+    nivel: '4 a 12 años',
     img: catKids,
-    desc: 'Un circuito especial para niñas y niños de 2 a 14 años, para que la familia completa sea parte del Tour.',
+    desc: 'Un espacio para niñas y niños de 4 a 12 años, guiados por monitores especializados, para que la familia completa sea parte del Tour.',
   },
 ]
 
@@ -296,11 +393,11 @@ export const NOTICIAS: Noticia[] = [
 export const FAQ = [
   {
     q: '¿Cuándo y dónde se realiza el MTB Tour?',
-    a: 'Son 6 fechas al año. En 2026: 22 de marzo (Viña Matetic), 3 de mayo (Viña Casas del Bosque), 14 de junio (Viña López Pangue), 9 de agosto (Parque Pitama), 6 de septiembre (Viña Veramonte) y 25 de octubre (Hacienda Picarquín).',
+    a: 'Son 6 fechas al año, entre marzo y noviembre. En 2027: 7 de marzo, 25 de abril, 13 de junio, 25 de julio, 3 de octubre y 21 de noviembre. Las sedes se anunciarán en este sitio y en Instagram @mountainbiketour.',
   },
   {
     q: '¿Hay categorías para distintos niveles?',
-    a: 'Sí: Familiar, Intermedio, Experto, Gravel, E-Bike y MTB Kids (2 a 14 años). Las distancias cambian según la fecha; revisa los circuitos de la próxima fecha en este sitio.',
+    a: 'Sí: Familiar, Intermedio, Experto, Gravel, E-Bike y MTB Kids (4 a 12 años). Las distancias cambian según la fecha; revisa los circuitos de la próxima fecha en este sitio.',
   },
   {
     q: '¿Cuál es la agenda del día de la carrera?',
@@ -336,7 +433,7 @@ export const FAQ = [
   },
   {
     q: '¿Cuánta gente participa?',
-    a: 'En 2026 cada fecha ha reunido entre 400 y más de 600 ciclistas, considerando todas las categorías.',
+    a: 'En la temporada 2026 cada fecha reunió entre 400 y más de 600 ciclistas, considerando todas las categorías.',
   },
   {
     q: '¿Hay premios para los ganadores?',
