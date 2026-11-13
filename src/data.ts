@@ -105,9 +105,9 @@ const DISTANCIAS = ['Familiar', 'Intermedio', 'Experto', 'Gravel', 'E-Bike', 'MT
 export const FECHAS: Fecha[] = [
   {
     n: 1,
-    iso: '2027-03-07',
+    iso: '2027-03-14',
     foco: '72% 40%',
-    dia: '7',
+    dia: '14',
     mes: 'Mar',
     lugar: '',
     img: fecha1,
@@ -140,9 +140,9 @@ export const FECHAS: Fecha[] = [
   },
   {
     n: 3,
-    iso: '2027-06-13',
-    dia: '13',
-    mes: 'Jun',
+    iso: '2027-05-30',
+    dia: '30',
+    mes: 'May',
     lugar: '',
     img: fecha3,
     agotado: false,
@@ -157,8 +157,8 @@ export const FECHAS: Fecha[] = [
   },
   {
     n: 4,
-    iso: '2027-07-25',
-    dia: '25',
+    iso: '2027-07-11',
+    dia: '11',
     mes: 'Jul',
     lugar: '',
     img: fecha4,
@@ -191,8 +191,8 @@ export const FECHAS: Fecha[] = [
   },
   {
     n: 6,
-    iso: '2027-11-21',
-    dia: '21',
+    iso: '2027-11-07',
+    dia: '7',
     mes: 'Nov',
     lugar: '',
     img: fecha6,
@@ -606,7 +606,7 @@ export const NOTICIAS: Noticia[] = [
 export const FAQ = [
   {
     q: '¿Cuándo y dónde se realiza el MTB Tour?',
-    a: 'Son 6 fechas al año, entre marzo y noviembre. En 2027: 7 de marzo, 25 de abril, 13 de junio, 25 de julio, 3 de octubre y 21 de noviembre. Los lugares se anunciarán en este sitio y en Instagram @mountainbiketour.',
+    a: 'Son 6 fechas al año, entre marzo y noviembre. En 2027: 14 de marzo, 25 de abril, 30 de mayo, 11 de julio, 3 de octubre y 7 de noviembre. Los lugares se anunciarán en este sitio y en Instagram @mountainbiketour.',
   },
   {
     q: '¿Hay categorías para distintos niveles?',
