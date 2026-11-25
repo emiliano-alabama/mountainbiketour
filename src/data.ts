@@ -54,7 +54,7 @@ export const LINKS = {
   eventos: 'https://welcu.com/demaria',
   video: 'HWdocvktQ7M',
   resultadosAnteriores: 'https://www.cronolap.cl/eventos',
-  bases: 'https://mountainbiketour.cl/wp-content/uploads/2026/06/Bases-MTB.pdf',
+  bases: '/bases/Bases-MTB-2027.pdf',
   noticias: 'https://mountainbiketour.cl/noticias/',
   instagram: 'https://www.instagram.com/mountainbiketour/',
   facebook: '',
@@ -112,7 +112,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha1,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour1',
     distancias: DISTANCIAS,
     ticketera: {
@@ -129,7 +129,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha2,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour2',
     distancias: DISTANCIAS,
     ticketera: {
@@ -146,7 +146,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha3,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour3',
     distancias: DISTANCIAS,
     ticketera: {
@@ -163,7 +163,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha4,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour4',
     distancias: DISTANCIAS,
     ticketera: {
@@ -180,7 +180,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha5,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour5',
     distancias: DISTANCIAS,
     ticketera: {
@@ -197,7 +197,7 @@ export const FECHAS: Fecha[] = [
     lugar: '',
     img: fecha6,
     agotado: false,
-    largada: '09:30',
+    largada: '09:00',
     inscripcion: 'https://welcu.com/demaria/mountainbiketour6',
     distancias: DISTANCIAS,
     edicion: 'Gran final',
@@ -236,49 +236,47 @@ LINKS.inscripcion = FECHA_DESTACADA.inscripcion ?? LINKS.eventos
 export type Ruta = {
   nombre: string
   categorias: string[]
-  km: string // rango de distancia, p. ej. '25–36'
+  km: string // rango de distancia, p. ej. '25–40'
   escala: number // altura relativa del perfil ilustrativo (0 a 1)
   desc: string
   dmas?: number // desnivel exacto, cuando se publique el circuito de la fecha
   kmz?: string
 }
 
-// Distancias de referencia (rangos corridos en la temporada 2026). Intermedio y Gravel comparten circuito, igual que Experto y E-Bike.
-// El circuito exacto de cada fecha se publica antes de la carrera.
+// Distancias referenciales según las bases 2027. La distancia exacta depende del circuito de cada fecha.
+// Gravel y E-Bike corren el circuito Intermedio o el Experto según la fecha: se informa junto con el circuito de cada carrera.
 export const RUTAS: Ruta[] = [
   {
     nombre: 'Familiar',
     categorias: ['Familiar'],
-    km: '18–26',
+    km: '15–25',
     escala: 0.4,
     desc: 'El circuito para disfrutar en familia, con un enfoque recreativo y menos competitivo. Incluye la modalidad padres e hij@s en dupla.',
   },
   {
     nombre: 'Intermedio',
-    categorias: ['Intermedio', 'Gravel'],
-    km: '25–36',
+    categorias: ['Intermedio'],
+    km: '25–40',
     escala: 0.7,
-    desc: 'Combina tramos técnicos y desafío físico, para ciclistas que ya pedalean con frecuencia. Es también el circuito de la categoría Gravel.',
+    desc: 'Combina tramos técnicos y desafío físico, para ciclistas que ya pedalean con frecuencia y tienen experiencia arriba de la bicicleta.',
   },
   {
     nombre: 'Experto',
-    categorias: ['Experto', 'E-Bike'],
-    km: '35–44',
+    categorias: ['Experto'],
+    km: '35–60',
     escala: 1,
-    desc: 'Máxima exigencia en kilometraje y altimetría, para ciclistas avanzados y de élite. Lo comparten Experto y E-Bike.',
+    desc: 'Máxima exigencia en kilometraje y altimetría, para ciclistas experimentados y con sólida trayectoria en la bicicleta.',
   },
 ]
 
-// Agenda típica (basada en la temporada 2026). La de cada fecha se confirma antes de la carrera.
+// Horarios generales y referenciales (bases 2027, artículo 3). La agenda de cada fecha puede cambiar y se informa con anticipación.
 export const AGENDA = [
-  { hora: '08:15', titulo: 'Abre el campamento base', detalle: 'Inicio de atenciones' },
-  { hora: '08:15', titulo: 'Retiro de kits', detalle: 'Hasta las 09:15 hrs' },
-  { hora: '08:30', titulo: 'Recepción MTB Kids', detalle: 'Hasta las 09:20 hrs' },
-  { hora: '09:30', titulo: 'Largada Expertos y E-Bike', detalle: 'Primera salida del día', destacado: true },
-  { hora: '09:50', titulo: 'Largada Intermedios y Gravel', detalle: '' },
-  { hora: '10:00', titulo: 'Largada Familiar', detalle: '' },
-  { hora: '12:00', titulo: 'Post carrera y premiación', detalle: 'Hasta las 14:00 hrs' },
-  { hora: '13:30', titulo: 'Fin del evento', detalle: '' },
+  { hora: '08:15', titulo: 'Inicio de actividades', detalle: 'Abre el campamento base' },
+  { hora: '08:20', titulo: 'Retiro de kits', detalle: 'Hasta las 09:45 hrs' },
+  { hora: '08:30', titulo: 'Recepción MTB Kids', detalle: 'Hasta las 09:15 hrs' },
+  { hora: '09:00', titulo: 'Largadas diferenciadas', detalle: 'Entre 09:00 y 10:00, según categoría', destacado: true },
+  { hora: '12:30', titulo: 'Post carrera y premiación', detalle: '' },
+  { hora: '14:00', titulo: 'Fin de actividades', detalle: 'Cierre del campamento base' },
 ]
 
 export const CATEGORIAS = [
@@ -304,19 +302,19 @@ export const CATEGORIAS = [
     nombre: 'Gravel',
     nivel: 'Nueva categoría',
     img: catGravel,
-    desc: 'Pensada para bicicletas gravel, con una mezcla de terrenos ideales para este tipo de ciclismo. Corre el circuito Intermedio.',
+    desc: 'Pensada para bicicletas gravel, con una mezcla de terrenos ideales para este tipo de ciclismo. Según el lugar, corre el circuito Intermedio o el Experto: se informa para cada fecha.',
   },
   {
     nombre: 'E-Bike',
     nivel: 'Pedaleo asistido',
     img: catEbike,
-    desc: 'Para bicicletas eléctricas de montaña. Recorre el circuito Experto, con largada junto a los Expertos.',
+    desc: 'Para bicicletas eléctricas de montaña. Según el lugar, corre el circuito Intermedio o el Experto: se informa para cada fecha.',
   },
   {
     nombre: 'MTB Kids',
-    nivel: '4 a 12 años',
+    nivel: '2 a 12 años',
     img: catKids,
-    desc: 'Un espacio para niñas y niños de 4 a 12 años, guiados por monitores especializados, para que la familia completa sea parte del Tour.',
+    desc: 'Un espacio para niñas y niños de 2 a 12 años, guiados por monitores especializados, para que la familia completa sea parte del Tour.',
   },
 ]
 
@@ -610,15 +608,15 @@ export const FAQ = [
   },
   {
     q: '¿Hay categorías para distintos niveles?',
-    a: 'Sí: Familiar, Intermedio, Experto, Gravel, E-Bike y MTB Kids (4 a 12 años). Las distancias cambian según la fecha; revisa los circuitos de la próxima fecha en este sitio.',
+    a: 'Sí: Familiar (15 a 25 km), Intermedio (25 a 40 km), Experto (35 a 60 km), Gravel, E-Bike y MTB Kids (2 a 12 años). Son rangos referenciales: la distancia exacta depende del circuito de cada fecha. Gravel y E-Bike corren el circuito Intermedio o el Experto, según se informe para cada fecha.',
   },
   {
     q: '¿Cuál es la agenda del día de la carrera?',
-    a: 'Varía según la fecha. Una jornada habitual: 8:15 abre el campamento base y comienza la entrega de kits, recepción de MTB Kids, 9:30 largada Expertos y E-Bike, luego Intermedios y Gravel, y Familiar. Post carrera y premiación desde las 12:00.',
+    a: 'Varía según la fecha y se publica en este sitio. Los horarios generales, referenciales, son: 8:15 inicio de actividades, 8:20 a 9:45 retiro de kits, 8:30 a 9:15 recepción de MTB Kids, 9:00 a 10:00 largadas diferenciadas por categoría, 12:30 post carrera y premiación, y 14:00 fin de actividades en el campamento base.',
   },
   {
     q: '¿Cuándo se cierran las inscripciones?',
-    a: 'El viernes previo a cada fecha a las 09:00, o antes si se completan los cupos. Los precios suben a medida que se acerca la carrera, así que conviene inscribirse con anticipación.',
+    a: 'El viernes anterior a cada fecha a las 15:30, o antes si se agotan los cupos. Los precios suben a medida que se acerca la carrera, así que conviene inscribirse con anticipación.',
   },
   {
     q: '¿Si compro el ticket ahora, tengo precio preferencial?',
@@ -626,7 +624,7 @@ export const FAQ = [
   },
   {
     q: '¿Qué incluye el kit de competencia?',
-    a: 'Polera oficial del evento, número de competidor, chip de competencia y acceso a todas las prestaciones del campamento base (cervezas, comida, masajes, frutas, entre otros).',
+    a: 'Número de competidor, chip de competencia y acceso a todas las prestaciones del campamento base (cervezas, comida, masajes, frutas, entre otros). La tricota oficial se entrega solo a quienes la compren.',
   },
   {
     q: '¿Hay medallas para quienes terminan?',

@@ -94,7 +94,7 @@ function Intro() {
     { v: '6', l: 'Fechas al año' },
     { v: '6', l: 'Categorías' },
     { v: '600+', l: 'Ciclistas en López Pangue' },
-    { v: '2–14', l: 'Años en MTB Kids' },
+    { v: '2–12', l: 'Años en MTB Kids' },
   ]
   const conFotos = FECHAS.filter((f) => f.fotos).at(-1)
   return (
@@ -277,7 +277,7 @@ function Rutas() {
               Elige tu <span className="text-brand">circuito</span>
             </>
           }
-          intro="Tres circuitos para seis categorías. Estas son las distancias de referencia; el circuito exacto de cada fecha, con su desnivel, se publica antes de la carrera."
+          intro="Tres circuitos de referencia. El circuito exacto de cada fecha, con su distancia y desnivel, se publica antes de la carrera. Gravel y E-Bike corren el circuito Intermedio o el Experto, según se informe para cada fecha."
         />
 
         <div className="grid gap-5 md:grid-cols-3">
@@ -312,12 +312,12 @@ function Rutas() {
             </article>
           ))}
         </div>
-        <p className="mt-4 font-mono text-xs text-slate">Perfiles ilustrativos. Rangos de distancia corridos en la temporada 2026.</p>
+        <p className="mt-4 font-mono text-xs text-slate">Perfiles ilustrativos. Distancias referenciales según las bases {MARCA.temporada}, sujetas al circuito de cada fecha.</p>
 
         <div className="reveal mt-8 flex flex-col gap-4 rounded-3xl bg-sky p-6 sm:flex-row sm:items-center md:p-8">
           <span className="display shrink-0 text-5xl text-brand">MTB Kids</span>
           <p className="leading-relaxed text-ink/80">
-            Un espacio para niñas y niños de <strong>4 a 12 años</strong>, guiados por monitores especializados. La recepción es antes de las largadas, el mismo día de la carrera.
+            Un espacio para niñas y niños de <strong>2 a 12 años</strong>, guiados por monitores especializados. La recepción es antes de las largadas, el mismo día de la carrera.
           </p>
         </div>
 
@@ -351,7 +351,7 @@ function Agenda() {
               <span className="text-brand">sobre ruedas</span>
             </>
           }
-          intro="Así es una jornada habitual del MTB Tour: largadas escalonadas desde las 09:30 y premiación al mediodía. La agenda de cada fecha se confirma antes de la carrera."
+          intro="Horarios generales y referenciales según las bases: largadas diferenciadas entre las 09:00 y las 10:00, y cierre a las 14:00. La agenda de cada fecha puede cambiar según el lugar y se confirma antes de la carrera."
         />
 
         <div className="grid gap-10 lg:grid-cols-12">
@@ -393,7 +393,7 @@ function Agenda() {
             <article className="reveal rounded-3xl bg-white p-6 ring-1 ring-line md:p-7">
               <p className="eyebrow text-brand">Entrega de kits</p>
               <p className="mt-3 leading-relaxed">
-                Número y chip se retiran <strong>el día de la carrera, habitualmente de 08:15 a 09:15 hrs</strong>, en el campamento base. Incluye la polera oficial del evento.
+                Número y chip se retiran <strong>el día de la carrera, habitualmente de 08:20 a 09:45 hrs</strong>, en el campamento base. La tricota oficial se entrega solo a quienes la compren.
               </p>
             </article>
             <article className="reveal rounded-3xl bg-ink p-6 text-white md:p-7">
@@ -874,7 +874,7 @@ function FinalCta() {
             <br />
             en la meta
           </p>
-          <p className="mt-6 max-w-md text-lg text-white/80">Las inscripciones cierran el viernes antes de la carrera a las 09:00, o antes si se completan los cupos.</p>
+          <p className="mt-6 max-w-md text-lg text-white/80">Las inscripciones cierran el viernes anterior a la carrera a las 15:30, o antes si se agotan los cupos.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <CtaButton href={LINKS.inscripcion}>Comprar tickets</CtaButton>
             <a href={LINKS.bases} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-full border-2 border-white px-6 py-3 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-white hover:text-brand">
