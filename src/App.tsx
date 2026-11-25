@@ -282,28 +282,36 @@ function Rutas() {
         />
 
         <div className="grid gap-5 md:grid-cols-3">
-          {RUTAS.map((r, i) => (
+          {RUTAS.map((r, i) => {
+            // Circuito publicado de la fecha destacada; si no hay, el rango referencial de las bases
+            const c = FECHA_DESTACADA.circuitos?.[r.nombre]
+            return (
             <article key={r.nombre} className="reveal flex flex-col rounded-3xl border border-line bg-snow p-6 md:p-7" style={{ transitionDelay: `${i * 90}ms` }}>
               <div className="flex items-start justify-between gap-3">
                 <h3 className="flex flex-wrap gap-1.5">
-                  {r.categorias.map((c) => (
-                    <span key={c} className="rounded-full bg-white px-3 py-1 text-sm font-bold ring-1 ring-line">
-                      {c}
+                  {(c?.categorias ?? r.categorias).map((cat) => (
+                    <span key={cat} className="rounded-full bg-white px-3 py-1 text-sm font-bold ring-1 ring-line">
+                      {cat}
                     </span>
                   ))}
                 </h3>
-                <span className="font-mono text-xs text-slate">{r.dmas ? `D+${r.dmas.toLocaleString('es-CL')} m` : 'Según la fecha'}</span>
+                <span className="font-mono text-xs text-slate">{c ? `D+${c.dmas.toLocaleString('es-CL')} m` : 'Según la fecha'}</span>
               </div>
               <div className="mt-4 flex items-end gap-4">
-                <span className="display text-[5rem] leading-[0.75] md:text-[5.5rem]">{r.km}</span>
+                <span className="display text-[5rem] leading-[0.75] md:text-[5.5rem]">{c?.km ?? r.km}</span>
                 <span className="mb-1 rounded-md bg-ink px-2 py-1 font-mono text-sm font-semibold text-volt-soft">km</span>
               </div>
               <div className="mt-6">
                 <Profile ruta={r} />
               </div>
+              {c && (
+                <p className="mt-3 font-mono text-xs text-slate">
+                  Fecha {FECHA_DESTACADA.n} · {nombreLugar(FECHA_DESTACADA)} · Rango referencial {r.km} km
+                </p>
+              )}
               <p className="mt-5 flex-1 leading-relaxed text-slate">{r.desc}</p>
-              {r.kmz && (
-              <a href={r.kmz} className="mt-6 inline-flex items-center gap-2 self-start rounded-full border-2 border-ink px-5 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-white" download>
+              {c && (
+              <a href={c.kmz} className="mt-6 inline-flex items-center gap-2 self-start rounded-full border-2 border-ink px-5 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors hover:bg-ink hover:text-white" download>
                 <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
                   <path d="M10 3v10m0 0-4-4m4 4 4-4M4 17h12" stroke="currentColor" strokeWidth="2" fill="none" />
                 </svg>
@@ -311,9 +319,15 @@ function Rutas() {
               </a>
               )}
             </article>
-          ))}
+            )
+          })}
         </div>
-        <p className="mt-4 font-mono text-xs text-slate">Perfiles ilustrativos. Distancias referenciales según las bases {MARCA.temporada}, sujetas al circuito de cada fecha.</p>
+        <p className="mt-4 font-mono text-xs text-slate">
+          Perfiles ilustrativos.{' '}
+          {FECHA_DESTACADA.circuitos
+            ? `Circuitos de la fecha ${FECHA_DESTACADA.n}, referenciales y sujetos a modificaciones. El KMZ corresponde a una vuelta del circuito.`
+            : `Distancias referenciales según las bases ${MARCA.temporada}, sujetas al circuito de cada fecha.`}
+        </p>
 
         <div className="reveal mt-8 flex flex-col gap-4 rounded-3xl bg-sky p-6 sm:flex-row sm:items-center md:p-8">
           <span className="display shrink-0 text-5xl text-brand">MTB Kids</span>

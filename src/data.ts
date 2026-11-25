@@ -103,6 +103,10 @@ export type Fecha = {
   ubicacion?: { lat: number; lng: number }
   foco?: string // encuadre de la foto en el hero (CSS object-position), p. ej. '75% 30%'
   afiche?: string // se muestra como popup una vez por visitante
+  // Circuitos publicados de la fecha, por nombre de ruta (RUTAS). Se muestran en Circuitos cuando es la fecha destacada.
+  // `categorias` indica qué categorías corren ese circuito en la fecha (Gravel y E-Bike cambian según el lugar).
+  // El KMZ es una vuelta; `km` y `dmas` son el total de la carrera.
+  circuitos?: Record<string, { km: string; dmas: number; kmz: string; categorias: string[] }>
   // Ticketera Welcu: los botones de inscripción abren un modal con este embed
   ticketera?: { id: string; script: string; pagina: string }
 }
@@ -121,6 +125,11 @@ export const FECHAS: Fecha[] = [
     mes: 'Mar',
     lugar: 'Parque Bienestar Pitama',
     ubicacion: { lat: -33.2419026, lng: -71.4743447 },
+    circuitos: {
+      Familiar: { km: '18', dmas: 540, kmz: '/kmz/fecha1-pitama-familiar-18km.kmz', categorias: ['Familiar'] },
+      Intermedio: { km: '32', dmas: 1000, kmz: '/kmz/fecha1-pitama-intermedio-gravel-32km.kmz', categorias: ['Intermedio', 'Gravel'] },
+      Experto: { km: '43', dmas: 1400, kmz: '/kmz/fecha1-pitama-experto-ebike-43km.kmz', categorias: ['Experto', 'E-Bike'] },
+    },
     img: fecha1,
     agotado: false,
     largada: '09:00',
@@ -250,8 +259,6 @@ export type Ruta = {
   km: string // rango de distancia, p. ej. '25–40'
   escala: number // altura relativa del perfil ilustrativo (0 a 1)
   desc: string
-  dmas?: number // desnivel exacto, cuando se publique el circuito de la fecha
-  kmz?: string
 }
 
 // Distancias referenciales según las bases 2027. La distancia exacta depende del circuito de cada fecha.
