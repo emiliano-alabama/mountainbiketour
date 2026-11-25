@@ -24,6 +24,7 @@ import {
   nombreLugar,
   FECHA_DESTACADA,
   LINKS,
+  RESULTADOS_ANTERIORES,
   MARCA,
   NOTICIAS,
   NAV,
@@ -532,9 +533,14 @@ function Resultados() {
               </li>
             ))}
           </ul>
-          <a href={LINKS.resultadosAnteriores} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand hover:text-ink">
-            Ver resultados {MARCA.temporada - 1} en Cronolap <Arrow />
-          </a>
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-sm font-bold uppercase tracking-wide">Resultados {MARCA.temporada - 1}</span>
+            {RESULTADOS_ANTERIORES.map((url, i) => (
+              <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Resultados ${MARCA.temporada - 1}, ${i + 1}ª fecha`} className="inline-flex items-center gap-1.5 rounded-full border-2 border-ink px-3.5 py-1.5 text-sm font-bold transition-colors hover:bg-ink hover:text-white">
+                {i + 1}ª fecha <Arrow />
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="lg:col-span-5">

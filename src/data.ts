@@ -48,13 +48,23 @@ export const MARCA = {
   temporada: 2027,
 }
 
+// Resultados de la temporada anterior, en la página de cada fecha del cronometraje
+export const RESULTADOS_ANTERIORES = [
+  'https://www.cronolap.cl/eventos/mountainbike-tour-1ra-fecha',
+  'https://www.cronolap.cl/eventos/mountainbike-tour-2da-fecha',
+  'https://www.cronolap.cl/eventos/mountainbike-tour-3ra-fecha',
+  'https://www.cronolap.cl/eventos/mountainbike-tour-4ta-fecha',
+  'https://www.cronolap.cl/eventos/mountainbike-tour-5ta-fecha',
+  'https://www.cronolap.cl/eventos/mountainbike-tour-6ta-fecha',
+]
+
 export const LINKS = {
   // Se reemplaza por la inscripción de la fecha destacada (ver más abajo)
   inscripcion: 'https://welcu.com/demaria/mountainbiketour1',
   eventos: 'https://welcu.com/demaria',
   video: 'HWdocvktQ7M',
-  resultadosAnteriores: 'https://www.cronolap.cl/eventos',
-  bases: '/bases/Bases-MTB-2027.pdf',
+  // ?v= obliga a descargar la versión nueva cuando se reemplaza el PDF
+  bases: '/bases/Bases-MTB-2027.pdf?v=20261125',
   noticias: 'https://mountainbiketour.cl/noticias/',
   instagram: 'https://www.instagram.com/mountainbiketour/',
   facebook: '',
@@ -109,7 +119,8 @@ export const FECHAS: Fecha[] = [
     foco: '72% 40%',
     dia: '7',
     mes: 'Mar',
-    lugar: '',
+    lugar: 'Parque Bienestar Pitama',
+    ubicacion: { lat: -33.2419026, lng: -71.4743447 },
     img: fecha1,
     agotado: false,
     largada: '09:00',
