@@ -64,7 +64,7 @@ export const LINKS = {
   eventos: 'https://welcu.com/demaria',
   video: 'HWdocvktQ7M',
   // ?v= obliga a descargar la versión nueva cuando se reemplaza el PDF
-  bases: '/bases/Bases-MTB-2027.pdf?v=20261125',
+  bases: 'bases/Bases-MTB-2027.pdf?v=20261125',
   noticias: 'https://mountainbiketour.cl/noticias/',
   instagram: 'https://www.instagram.com/mountainbiketour/',
   facebook: '',
@@ -126,9 +126,9 @@ export const FECHAS: Fecha[] = [
     lugar: 'Parque Bienestar Pitama',
     ubicacion: { lat: -33.2419026, lng: -71.4743447 },
     circuitos: {
-      Familiar: { km: '18', dmas: 540, kmz: '/kmz/fecha1-pitama-familiar-18km.kmz', categorias: ['Familiar'] },
-      Intermedio: { km: '32', dmas: 1000, kmz: '/kmz/fecha1-pitama-intermedio-gravel-32km.kmz', categorias: ['Intermedio', 'Gravel'] },
-      Experto: { km: '43', dmas: 1400, kmz: '/kmz/fecha1-pitama-experto-ebike-43km.kmz', categorias: ['Experto', 'E-Bike'] },
+      Familiar: { km: '18', dmas: 540, kmz: 'kmz/fecha1-pitama-familiar-18km.kmz', categorias: ['Familiar'] },
+      Intermedio: { km: '32', dmas: 1000, kmz: 'kmz/fecha1-pitama-intermedio-gravel-32km.kmz', categorias: ['Intermedio', 'Gravel'] },
+      Experto: { km: '43', dmas: 1400, kmz: 'kmz/fecha1-pitama-experto-ebike-43km.kmz', categorias: ['Experto', 'E-Bike'] },
     },
     img: fecha1,
     agotado: false,
