@@ -168,7 +168,7 @@ export default function Ranking() {
               ))}
             </div>
             <p className="text-lg leading-relaxed text-slate">
-              En cada fecha, los 9 primeros de cada categoría suman puntaje (10, 8, 7, 6, 5, 4, 3, 2 y 1). El ranking 2027 parte con la 1ª fecha, el 14 de marzo.
+              En cada fecha, los 9 primeros de cada categoría suman puntaje (10, 8, 7, 6, 5, 4, 3, 2 y 1). El ranking 2027 parte con la 1ª fecha, el 7 de marzo.
             </p>
           </div>
         </div>

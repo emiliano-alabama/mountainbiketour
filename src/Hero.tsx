@@ -165,7 +165,7 @@ export default function Hero({ onVideo }: { onVideo: () => void }) {
   const esDestacada = f === FECHA_DESTACADA
   const corriendo = !pausa && !sobreLinea
   const ir = (n: number) => setI((n + FECHAS.length) % FECHAS.length)
-  // Título: la sede cuando está confirmada; si no, "1ª fecha / 14 de marzo"
+  // Título: la sede cuando está confirmada; si no, "1ª fecha / 7 de marzo"
   const [linea1, ...resto] = f.lugar ? f.lugar.split(" ") : [`${f.n}ª fecha`, ...fechaLarga(f.iso).replace(/^\S+ /, "").split(" ")]
   const estado = esDestacada
     ? f.agotado
